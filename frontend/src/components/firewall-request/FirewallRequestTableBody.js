@@ -59,14 +59,14 @@ class FirewallRequestTableBody extends Component {
                     <FirewallRowDetail
                         srcType={row.src_type}
                         srcAddress={row.src_address}
-                       destType={row.dest_type}
-                       destAddress={row.dest_address}
-                       protocol={row.protocol}
-                       port={row.port}
-                       ruleAction={row.rule_action}
-                       startDate={row.start_date}
-                       endDate={row.end_date}
-                       comment={row.comment}
+                        destType={row.dest_type}
+                        destAddress={row.dest_address}
+                        protocol={row.protocol}
+                        port={row.port}
+                        ruleAction={row.rule_action}
+                        startDate={row.start_date}
+                        endDate={row.end_date}
+                        comment={row.comment}
                     />
                 )
             })

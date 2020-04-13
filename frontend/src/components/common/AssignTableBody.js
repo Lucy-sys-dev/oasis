@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, CardLink} from 'reactstrap';
+import {Button, CardLink, Col, Row} from 'reactstrap';
 import {observer} from 'mobx-react';
 import CustomSelect from "./CustomSelect";
 import CustomInput from "./CustomInput";
@@ -9,30 +9,43 @@ class AssignTableBody extends Component {
     renderTableBody = () => {
         const { store } = this.props;
         return (
-            <tr className="text-center">
-                <td>{ }</td>
-                <td>
+            <div className="text-center assign-search">
+                <Row>
+                {/*<Col sm={1}>{ }</Col>*/}
+                {/*<Col sm={2}>*/}
                     <CustomSelect
+                        style={{width: "42px"}}
                         // title=""
                         name="assighType"
                         data={store.assignType}
                         handleChange={e=> store.handleAssignChange(e, 'assignType', 'TYPE')}
                     />
-                </td>
-                <td>
-                    <CustomInput name="assignName" handleChange={e=> store.handleAssignChange(e, 'user_id', 'TEXT')} />
-                </td>
-                <td style={{padding:"8px 15px"}}>
+                {/*</Col>*/}
+                {/*<Col sm={3}>*/}
+                    <CustomInput className="search-input" name="assignName" handleChange={e=> store.handleAssignChange(e, 'user_id', 'TEXT')} />
+                {/*</Col>*/}
+                {/*<Col sm={3} className="text-center search-button">*/}
+                    <Button
+                        onClick={e => store.handleFireRuleCheck(e)}
+                        className="search-button"
+                        color="warning"
+                        size="md"
+                    >
+                        검색
+                    </Button>
+                {/*</Col>*/}
+                {/*<Col sm={3}>*/}
                     <Button
                         onClick={e => store.handleAddAssignees(e)}
-                        className="btn-icon btn-round"
+                        className="btn-icon btn-round search-button"
                         color="warning"
-                        size="sm"
+                        size="md"
                     >
-                        <i className="fa  fa-check" />
+                        <i className="fa  fa-plus" />
                     </Button>
-                </td>
-            </tr>
+                </Row>
+                {/*</Col>*/}
+            </div>
         )
     };
 

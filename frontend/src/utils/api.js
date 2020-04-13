@@ -4,7 +4,7 @@ import axios from 'axios';
 //const cors = require('cors');
 
 const api1url = url => {
-    return 'http://localhost:3030'+url;
+    return 'http://192.168.1.175:3030'+url;
 };
 
 const getRequestHeader = config => {

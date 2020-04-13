@@ -1,3 +1,57 @@
+@import 'paper-dashboard';
+
+.login-page{
+  .ml-auto {
+    margin-left: 6em !important;
+  }
+
+  .card-login{
+    border-radius: $border-radius-large;
+    padding-bottom: $padding-base-horizontal;
+
+    .btn-wd{
+      min-width: 180px;
+    }
+
+    .logo-container{
+      width: 65px;
+      margin: 0 auto;
+      margin-bottom: 55px;
+
+      img{
+        width: 100%;
+      }
+    }
+
+    .input-group:last-child{
+      margin-bottom: 40px;
+    }
+
+    &.card-plain{
+      @include input-coloured-bg($opacity-5, $white-color, $white-color, $transparent-bg, $opacity-1, $opacity-2);
+
+      .input-group-addon,
+      .form-group.no-border .input-group-addon,
+      .input-group.no-border .input-group-addon{
+        color: $opacity-8;
+      }
+    }
+  }
+
+  .link{
+    font-size: 10px;
+    color: $white-color;
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
+
 .login-logo{
   float: right;
   padding: 489px 150px;

@@ -6,11 +6,11 @@ import { observer } from 'mobx-react';
 @observer
 class CustomSelect extends Component {
     render() {
-        const {name, data, value, handleChange, disable } = this.props;
+        const {name, data, value, handleChange, disable , children} = this.props;
 
         return (
             <>
-                <Col md="4" xs="8">
+                {/*<Col md="4" xs="8">*/}
                     <FormGroup className={disable ? 'select-disabled' : 'select-able'}>
                         <Select
                             className="react-select"
@@ -31,7 +31,7 @@ class CustomSelect extends Component {
                             }
                         />
                     </FormGroup>
-                </Col>
+                {/*</Col>*/}
             </>
         )
     }

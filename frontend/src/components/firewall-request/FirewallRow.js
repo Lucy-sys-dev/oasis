@@ -23,7 +23,7 @@ class FirewallRow extends Component {
                     />
                 </td>
                 <td>
-                    <CustomInput name="srcAddress" handleChange={e=> store.handleChange(e, 'src_address', 'IP')} />
+                    <CustomInput className="form-ip-control" name="srcAddress" value={store.qdata.src_address} handleChange={e=> store.handleChange(e, 'src_address', 'IP')} />
                 </td>
                 <td>
                     <CustomSelect
@@ -34,7 +34,7 @@ class FirewallRow extends Component {
                     />
                 </td>
                 <td>
-                    <CustomInput name="dstAddress" handleChange={e=> store.handleChange(e, 'dest_address', 'IP')} />
+                    <CustomInput className="form-ip-control" name="dstAddress" value={store.qdata.dest_address} handleChange={e=> store.handleChange(e, 'dest_address', 'IP')} />
                 </td>
                 <td>
                     <CustomSelect
@@ -45,7 +45,7 @@ class FirewallRow extends Component {
                     />
                 </td>
                 <td style={{width: "75px"}}>
-                    <CustomInput name="port" handleChange={e=> store.handleChange(e, 'port', 'NUMBER')} />
+                    <CustomInput name="port" value={store.qdata.port} handleChange={e=> store.handleChange(e, 'port', 'NUMBER')} />
                 </td>
                 <td>
                     <CustomSelect
@@ -61,8 +61,11 @@ class FirewallRow extends Component {
                         handleEndDateChange={store.handleEndDateChange}
                         prevDate={store.startDate}
                         endDate={store.endDate}
-                        yesterday
+                        // yesterday
                     />
+                    {/*<CustomInput className="form-ip-control" name="startDate" value={store.qdata.start_date} handleChange={e=> store.handleChange(e, 'start_date', 'TEXT')} />*/}
+                    {/*{` ~ `}*/}
+                    {/*<CustomInput className="form-ip-control" name="endDate" value={store.qdata.end_date} handleChange={e=> store.handleChange(e, 'end_date', 'TEXT')} />*/}
                 </td>
                 <td>
                     <CustomInput name="comment" handleChange={e=> store.handleChange(e, 'comment', 'TEXT')} />
@@ -77,22 +80,7 @@ class FirewallRow extends Component {
                         <i className="fa  fa-check" />
                     </Button>
                     <Button
-                        onClick={() => {
-                            // let obj = this.state.data.find(o => o.id === key);
-                            alert(
-                                "You've clicked EDIT button on \n{ \nSrc_ip: " +
-                                store.srcIP +
-                                ", \nsrc_type: " +
-                                store.srcType.id +
-                                ", \ndst_ip: " +
-                                store.dstIP +
-                                ", \ndst_type: " +
-                                store.dstType.id +
-                                ", \nprotocol: " +
-                                store.protocol.id +
-                                "\n}."
-                            );
-                        }}
+                        onClick={e => store.handleQdataReset(e)}
                         className="btn-icon btn-round"
                         color="warning"
                         size="sm"

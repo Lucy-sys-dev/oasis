@@ -1,5 +1,6 @@
 server:
-  port: 8080
+  port: 3030
+
 spring:
   profiles:
     active: prod
@@ -7,15 +8,39 @@ spring:
     console:
       enabled: true
       path: /console
-    jackson:
-      serialization.indent_output: true
-    datasource:
-      url: jdbc:h2:file:./build/h2db/db/ams;DB_CLOSE_DELAY=-1
-      username: ams
-      password:
-    jpa:
-      database: h2
-      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-      show-sql: true
-      properties:
-        hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+  #    jackson:
+  #      serialization.indent_output: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.1.175:5432/mis
+    username: oasisuser
+    password: qhdks!2550
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        #        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          format_sql: true
+          temp:
+            use_jdbc_metadata_defaults: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+swagger:
+  host-name: http://192.168.1.175:8000/v1
+wallbrain:
+  ws:
+    baseurl: http://192.168.1.175:8080/wallbrain-ws/api
+    api-user-id: root
+    api-user-password: '!q1w2e3r4'

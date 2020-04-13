@@ -9,9 +9,9 @@ class SidebarWithoutFooter extends React.Component {
                 <Container fluid={fluid}>
                     <Row className="credits justify-content-between">
             <span className="copyright">
-              Seoul Fintech Lab, 21, Baekbeom-ro 31-gil, Mapo-gu, Seoul, Republic of Korea
+                Seoul, Republic of Korea
             </span>
-                        <span className="copyright">COPYRIGHT &copy; 2019 BY L Fin, LTD. ALL RIGHTS RESERVED.</span>
+                        <span className="copyright">COPYRIGHT &copy; 2020 BY SSNC, LTD. ALL RIGHTS RESERVED.</span>
                     </Row>
                 </Container>
             </footer>

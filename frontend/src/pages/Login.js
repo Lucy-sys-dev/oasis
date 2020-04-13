@@ -16,8 +16,12 @@ import {
     Row,
 } from 'reactstrap';
 import { inject, observer } from 'mobx-react';
+import classNames from 'classnames/bind';
 import logo from '../assets/img/logo_b.png';
 import Loader from '../components/common/Loader';
+import styles from '../assets/scss/Login.scss';
+
+const cx = classNames.bind(styles);
 
 @inject('signInStore')
 @observer
@@ -26,7 +30,7 @@ class Login extends React.Component {
         const { signInStore, onUpdate } = this.props;
         signInStore.loginName = '';
         signInStore.password = '';
-        document.title = '아임히어-Work. Web Admin - 로그인';
+        document.title = 'OASIS. Web Admin - 로그인';
         onUpdate();
         document.body.classList.toggle('login-page');
         localStorage.clear();
@@ -91,10 +95,10 @@ class Login extends React.Component {
         };
 
         return (
-            <div className="login-page">
+            <div className={cx('login-page')}>
                 <Container>
-                    <Row style={{ paddingLeft: "76px" }}>
-                        <Col className="ml-auto mr-auto" lg="4" md="6">
+                    <Row>
+                        <Col className={cx('ml-auto')}>
                             <Form action="" className="form" method="" style={{ width: "536px"}}>
                                 <Card className="card-login">
                                     <CardHeader>
@@ -125,13 +129,6 @@ class Login extends React.Component {
                                             />
                                         </InputGroup>
                                         <InputGroup>
-                                            {/*
-                                            <InputGroupAddon addonType="prepend">
-                                                <InputGroupText>
-                                                    <i className="nc-icon nc-key-25 text-danger" />
-                                                </InputGroupText>
-                                            </InputGroupAddon>
-                                            */}
                                             <Input
                                                 placeholder="PW"
                                                 type="password"

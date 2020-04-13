@@ -1,5 +1,7 @@
 import commuteImage from './assets/img/icon_commute.png';
+import firewallImage from './assets/img/icon-firewall.png';
 import clientImage from './assets/img/icon_client.png';
+import myInfoImage from './assets/img/icon-myinfo.png';
 import ClientManagement from './pages/ClientManagement';
 import CommuteByStaff from './pages/CommuteByStaff';
 import FirewallRequest from './pages/FirewallRequest';
@@ -28,32 +30,32 @@ export default function getRoutes() {
         ];
     } else {
         r = [
+            // {
+            //     collapse: true,
+            //     name: '근무',
+            //     icon: commuteImage,
+            //     state: 'commuteCollapse',
+            //     views: [
+            //         // {
+            //         //     path: '/commute/team',
+            //         //     name: '조직 관리',
+            //         //     mini: '·',
+            //         //     component: CommuteByTeam,
+            //         //     layout: '/admin',
+            //         // },
+            //         {
+            //             path: '/commute/staff',
+            //             name: '사원 관리',
+            //             mini: '·',
+            //             component: CommuteByStaff,
+            //             layout: '/admin',
+            //         },
+            //     ],
+            // },
             {
                 collapse: true,
-                name: '근무',
-                icon: commuteImage,
-                state: 'commuteCollapse',
-                views: [
-                    // {
-                    //     path: '/commute/team',
-                    //     name: '조직 관리',
-                    //     mini: '·',
-                    //     component: CommuteByTeam,
-                    //     layout: '/admin',
-                    // },
-                    {
-                        path: '/commute/staff',
-                        name: '사원 관리',
-                        mini: '·',
-                        component: CommuteByStaff,
-                        layout: '/admin',
-                    },
-                ],
-            },
-            {
-                collapse: true,
-                name: '고객사',
-                icon: clientImage,
+                name: 'My Info',
+                icon: myInfoImage,
                 state: 'clientCollapse',
                 views: [
                     {
@@ -68,8 +70,8 @@ export default function getRoutes() {
             {
                 collapse: true,
                 name: '방화벽',
-                icon: clientImage,
-                state: 'clientCollapse',
+                icon: firewallImage,
+                state: 'firewallCollapse',
                 views: [
                     {
                         path: '/firewall-request',

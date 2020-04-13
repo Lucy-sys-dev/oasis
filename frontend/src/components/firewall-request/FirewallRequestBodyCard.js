@@ -35,7 +35,7 @@ class FirewallRequestBodyCard extends Component {
        const { store, tableHeader } = this.props;
 
        return (
-           <div style={{padding: "0px 42px"}}>
+           <div style={{padding: "0px 22px"}}>
                <Card>
                    <CardBody className="body-card">
                        <Row>
@@ -49,17 +49,17 @@ class FirewallRequestBodyCard extends Component {
                                {/*<ApllyForm />*/}
                            </Col>
                        </Row>
-                       <Row>
-                           <Col className="table-body">
-                               <Table className="assign-table custom-table-clickable" bordered striped responsive>
-                                   <TableHeaders tableHeader={['No', '구분', '이름', 'action']} />
-                                   <tbody>
-                                   <AssignTableBody store={store} removeRow={this.removeRow} />
-                                   </tbody>
-                               </Table>
-                               {/*<ApllyForm />*/}
-                           </Col>
-                       </Row>
+                       {/*<Row>*/}
+                       {/*    <Col className="table-body">*/}
+                       {/*        <Table className="assign-table custom-table-clickable" bordered striped responsive>*/}
+                       {/*            <TableHeaders tableHeader={['No', '구분', '이름', 'action']} />*/}
+                       {/*            <tbody>*/}
+                       {/*            <AssignTableBody store={store} removeRow={this.removeRow} />*/}
+                       {/*            </tbody>*/}
+                       {/*        </Table>*/}
+                       {/*        /!*<ApllyForm />*!/*/}
+                       {/*    </Col>*/}
+                       {/*</Row>*/}
                        {/*<div className="row-buttons">*/}
                        {/*    <Button onClick={this.appendRow} className="firewallBtn">*/}
                        {/*        /!*<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="svg" version="1.1" viewBox="0 0 400 400"*/}
@@ -81,19 +81,19 @@ class FirewallRequestBodyCard extends Component {
                         {/*<AssignedForm store={store} /> */}
                    </CardBody>
                </Card>
-               <div className="modal-footer">
-                   <div className="right-side" style={{paddingLeft:"380px"}}>
-                       <Button className="btn-link firewall-request" color="default" type="button" onClick={e => store.approvalFirewall(e)}>
-                           요청
-                       </Button>
-                   </div>
-                   {/* <div className="divider" /> */}
-                   <div className="left-side" style={{paddingRight:"380px"}}>
-                       <Button className="btn-link firewall-request" type="button" onClick={store.toggleDetailInfoModal}>
-                           취소
-                       </Button>
-                   </div>
-               </div>
+               {/*<div className="modal-footer">*/}
+               {/*    <div className="right-side" style={{paddingLeft:"380px"}}>*/}
+               {/*        <Button className="btn-link firewall-request" color="default" type="button" onClick={e => store.approvalFirewall(e)}>*/}
+               {/*            요청*/}
+               {/*        </Button>*/}
+               {/*    </div>*/}
+               {/*    /!* <div className="divider" /> *!/*/}
+               {/*    <div className="left-side" style={{paddingRight:"380px"}}>*/}
+               {/*        <Button className="btn-link firewall-request" type="button" onClick={store.toggleDetailInfoModal}>*/}
+               {/*            취소*/}
+               {/*        </Button>*/}
+               {/*    </div>*/}
+               {/*</div>*/}
                <AlertModal store={store} />
            </div>
        )

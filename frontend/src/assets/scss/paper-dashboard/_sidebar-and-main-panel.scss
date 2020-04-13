@@ -16,7 +16,7 @@
     top: 0;
     height: 100%;
     bottom: 0;
-    width: 260px;
+    width: 230px;
     left: 0;
     z-index: 999;
 
@@ -24,7 +24,7 @@
         position: relative;
         height: calc(100vh - 75px);
         overflow: auto;
-        width: 260px;
+        width: 230px;
         z-index: 4;
         padding-bottom: 100px;
 
@@ -531,7 +531,7 @@
         }
 
         .sidebar:hover {
-          width: 260px;
+          width: 230px;
 
           .logo {
             a.logo-normal {
@@ -544,7 +544,7 @@
             opacity: 1;
           }
           .sidebar-wrapper{
-            width: 260px;
+            width: 230px;
 
             > .nav li > a p,
             > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,

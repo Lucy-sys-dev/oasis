@@ -9,9 +9,9 @@ class CustomDate extends Component {
 
         return (
             <>
-                <Col md="4" xs="8" style={{ width: "257px"}}>
-                    <Row style={{ width: "285px" }}>
-                        <Col xs="5" className="datetime-custom-left" style={{ paddingLeft: "0px", width: "120px" }}>
+                <Col>
+                    <Row>
+                        <Col xs="7" className="datetime-custom-left">
                             <FormGroup>
                                 <ReactDatetime
                                     inputProps={{
@@ -34,10 +34,10 @@ class CustomDate extends Component {
                                 />
                             </FormGroup>
                         </Col>
-                        <Label xs="2" className="search-label text-center datetime-custom-center dateLabel">
+                        <Label xs="1" className="search-label text-center datetime-custom-center dateLabel">
                             ~
                         </Label>
-                        <Col xs="5" className="datetime-custom-right" style={{ paddingRight: "0px", width: "120px" }}>
+                        <Col xs="5" className="datetime-custom-right">
                             <FormGroup>
                                 <ReactDatetime
                                     inputProps={{

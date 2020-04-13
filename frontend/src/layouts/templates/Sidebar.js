@@ -1,10 +1,14 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { Col, Nav, Collapse, Label, Row } from 'reactstrap';
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
 
 import logo from '../../assets/img/oasis_logo.png';
+import styles from '../../assets/scss/SideBar.scss';
+
+const cx = classNames.bind(styles);
 
 let ps;
 
@@ -91,7 +95,7 @@ class Sidebar extends React.Component {
                                     <i>
                                         <img className="sidebar-icon" src={prop.icon} alt="sidebar-icon" />
                                     </i>
-                                    <p className="sidebar-text">
+                                    <p className={cx('sidebar-text')}>
                                         {prop.name}
                                         <b className="caret" />
                                     </p>
@@ -100,9 +104,9 @@ class Sidebar extends React.Component {
                                 <>
                                     <span className="sidebar-mini-icon">{prop.mini}</span>
                                     <span className="sidebar-normal">
-                    {prop.name}
+                                        {prop.name}
                                         <b className="caret" />
-                  </span>
+                                    </span>
                                 </>
                             )}
                         </a>
@@ -141,15 +145,15 @@ class Sidebar extends React.Component {
     render() {
         const { bgColor, activeColor, routes } = this.props;
         return (
-            <div className="sidebar" data-color={bgColor} data-active-color={activeColor} style={{ boxShadow: "2px 0 20px 0 rgba(0, 0, 0, 0.2)" }}>
+            <div className="sidebar" data-color={bgColor} data-active-color={activeColor}>
                 <div className="logo text-center">
                     <NavLink
                         to={localStorage.getItem('userRole') === 'STAFF' ? '/admin/commute/staff/' : '/admin/dashboard'}
                         className="simple-text logo-normal"
                         // style={{ position: 'relative', left: '-33px', height: '49px' }}
-                        style={{ position: 'relative', height: 'auto' }}
+                        style={{ position: 'relative', height: '49px' }}
                     >
-                        <img className="custom-logo" src={logo} alt="logo" style={{ width: "124px" }} />
+                        <img className="custom-logo" src={logo} alt="logo" />
                     </NavLink>
                 </div>
                 <div

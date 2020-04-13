@@ -56,9 +56,7 @@ class FirewallStore {
 
     @observable ruleAction = { id: 'ALLOW', label: 'ALLOW' };
 
-    @observable startDate = moment()
-        .subtract(7, 'days')
-        .format('YYYY-MM-DD');
+    @observable startDate = moment().format('YYYY-MM-DD');
 
     @observable endDate = moment().format('YYYY-MM-DD');
 
@@ -109,7 +107,7 @@ class FirewallStore {
 
     @observable assignType = [
         { id: 'Approval', label: '결재' },
-        { id: 'Consultation', label: '결재' },];
+        { id: 'Consultation', label: '합의' },];
 
     @observable assignees = [];
 
@@ -471,7 +469,7 @@ class FirewallStore {
 
     @action createAssigns = value => {
         this.assigns = value;
-    }
+    };
 
     @action requestFirewallRule = async () => {
         this.root.toggleLoading();
@@ -480,6 +478,21 @@ class FirewallStore {
             assigns: this.assigns,
             creator: this.root.myPageStore.id,
         });
+    };
+
+    @action handleQdataReset = async () => {
+        this.qdata = {
+            src_type: 'IPv4',
+            src_address: '',
+            dest_type: 'IPv4',
+            dest_address: '',
+            protocol: 'TCP',
+            port: '',
+            rule_action: 'ALLOW',
+            start_date: this.startDate,
+            end_date: this.endDate,
+            comment: '',
+        };
     }
 }
 

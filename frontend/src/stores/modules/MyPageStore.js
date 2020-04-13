@@ -1,6 +1,6 @@
 import { action, observable, runInAction } from 'mobx';
 import jwt from 'jsonwebtoken';
-import api from '../../utils/api';
+import api from '../../api/config';
 
 class MyPageStore {
     @observable toggle = false;
@@ -155,12 +155,8 @@ class MyPageStore {
         }
         const params = ({id: identityId, key: "ID"});
 
-        const {data} = await api.post('/api/v1/user/search', params, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
+        const { data } = await api.user.search(params);
+
         runInAction(() => {
             this.root.toggleLoading();
         });

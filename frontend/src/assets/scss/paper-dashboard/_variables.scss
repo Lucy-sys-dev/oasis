@@ -91,6 +91,7 @@ $purple-states-color:        darken($purple-color, 8%) !default;
 $medium-pale-bg:             #F1EAE0 !default;
 
 $brown-color:                #dcb285 !default;
+$indigo-color:               #00152e !default;
 $default-color-opacity:      rgba(182, 182, 182, .6) !default;
 $primary-color-opacity:      rgba(249, 99, 50, .3) !default;
 $success-color-opacity:      rgba(24, 206, 15, .3) !default;
@@ -357,7 +358,7 @@ $social-linkedin: 			         #0077B5 !default;
 $social-linkedin-state-color:        darken(#0077B5, 5%) !default;
 
 // Sidebar variables
-$sidebar-width:              calc(100% - 260px) !default;
+$sidebar-width:              calc(100% - 230px) !default;
 $sidebar-mini-width:         calc(100% - 80px) !default;
 
 

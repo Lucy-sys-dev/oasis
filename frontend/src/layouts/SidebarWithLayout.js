@@ -15,7 +15,7 @@ class SidebarWithLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            backgroundColor: 'brown',
+            backgroundColor: 'indigo',
             activeColor: 'danger',
             sidebarMini: false,
         };

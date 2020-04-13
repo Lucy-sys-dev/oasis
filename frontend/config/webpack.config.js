@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -18,11 +18,11 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const paths = require('./paths');
-const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const getClientEnvironment = require('./env');
+const paths = require('./paths');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -71,10 +71,10 @@ module.exports = function(webpackEnv) {
             isEnvDevelopment && require.resolve('style-loader'),
             isEnvProduction && {
                 loader: MiniCssExtractPlugin.loader,
-                options: Object.assign(
-                    {},
-                    shouldUseRelativeAssetPaths ? { publicPath: '../../' } : undefined
-                ),
+                options: {
+                    
+                    ...(shouldUseRelativeAssetPaths ? { publicPath: '../../' } : undefined)
+                },
             },
             {
                 loader: require.resolve('css-loader'),
@@ -159,7 +159,7 @@ module.exports = function(webpackEnv) {
                 : isEnvDevelopment && 'static/js/[name].chunk.js',
             // We inferred the "public path" (such as / or /my-project) from homepage.
             // We use "/" in development.
-            publicPath: publicPath,
+            publicPath,
             // Point sourcemap entries to original disk location (format as URL on Windows)
             devtoolModuleFilenameTemplate: isEnvProduction
                 ? info =>
@@ -470,13 +470,11 @@ module.exports = function(webpackEnv) {
         plugins: [
             // Generates an `index.html` file with the <script> injected.
             new HtmlWebpackPlugin(
-                Object.assign(
-                    {},
-                    {
-                        inject: true,
+                {
+                    
+                    inject: true,
                         template: paths.appHtml,
-                    },
-                    isEnvProduction
+                    ...(isEnvProduction
                         ? {
                             minify: {
                                 removeComments: true,
@@ -491,8 +489,8 @@ module.exports = function(webpackEnv) {
                                 minifyURLs: true,
                             },
                         }
-                        : undefined
-                )
+                        : undefined)
+                }
             ),
             // Inlines the webpack runtime script. This script is too small to warrant
             // a network request.
@@ -539,7 +537,7 @@ module.exports = function(webpackEnv) {
             // having to parse `index.html`.
             new ManifestPlugin({
                 fileName: 'asset-manifest.json',
-                publicPath: publicPath,
+                publicPath,
             }),
             // Moment.js is an extremely popular library that bundles large locale files
             // by default due to how Webpack interprets its code. This is a practical
