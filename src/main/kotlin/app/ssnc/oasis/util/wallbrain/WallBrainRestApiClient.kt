@@ -2,7 +2,14 @@ package app.ssnc.oasis.util.wallbrain
 
 //import org.springframework.web.client.exchange
 import app.ssnc.oasis.handler.firewall.entity.SearchRuleReq
-import app.ssnc.oasis.handler.firewall.entity.SearchRuleRes
+import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.PropertyAccessor
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+//import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module
+import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.sds.wallbrain.base.FirewallInfoVo
 import com.sds.wallbrain.base.FirewallRuleSessionInfoVo
 import com.sds.wallbrain.base.RuleSetGroupInfoVo
@@ -23,6 +30,7 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.io.UnsupportedEncodingException
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.List
 import javax.xml.bind.DatatypeConverter
@@ -64,6 +72,17 @@ class WallBrainRestApiClient {
         return factory
     }
 
+    fun getObjectMapper(enableLazyLoading: Boolean): ObjectMapper {
+        val objectMapper = ObjectMapper()
+        objectMapper.registerModule(JodaModule())
+
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT)
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        objectMapper.dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.KOREAN)
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        return objectMapper
+    }
+
     //RestTemplate restTemplate = new RestTemplate();
     fun getRestTemplate() : RestTemplate {
         val restTemplate = RestTemplate(clientHttpRequestFactory())
@@ -82,7 +101,7 @@ class WallBrainRestApiClient {
 
             val converter = MappingJackson2HttpMessageConverter()
 
-            converter.objectMapper = JsonConverter.getObjectMapper(false)
+            converter.objectMapper = getObjectMapper(false)
             converter.supportedMediaTypes = supportedjsonMediaTypes
             messageConverters.add(converter)
         }
@@ -90,6 +109,26 @@ class WallBrainRestApiClient {
         restTemplate.messageConverters = messageConverters
         return restTemplate
     }
+
+    fun convertObjectToJsonString(`object`: Any?, enableLazyLoading: Boolean): String? {
+        val mapper = getObjectMapper(enableLazyLoading)
+        return convertObjectToJsonString(mapper, `object`)
+    }
+
+    fun convertObjectToJsonString(mapper: ObjectMapper, `object`: Any?): String? {
+        mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+        var jsonString = ""
+        try {
+            jsonString = String(mapper.writeValueAsBytes(`object`), Charsets.UTF_8)
+        } catch (var4: JsonProcessingException) {
+            logger.error("can not convert {}", `object`, var4)
+        } catch (var5: UnsupportedEncodingException) {
+            logger.error("unsupportedEncoding {}", `object`, var5)
+        }
+        return jsonString
+    }
+
 
     fun getBaseUrl() : String {
         return configHolder!!.baseUrl
@@ -141,7 +180,7 @@ class WallBrainRestApiClient {
         val requestHeaders: HttpHeaders =  getReqeustHeader(configHolder.getUserCredential())
 
         val request = HttpEntity<Any>(
-            JsonConverter.convertObjectToJsonString(params, false), requestHeaders)
+            convertObjectToJsonString(params, false), requestHeaders)
 
         val response: ResponseEntity<Array<FirewallRuleSessionInfoVo>> = restTemplate.exchange(
             configHolder.baseUrl + String.format(ApiSubUrl, apiUrl), HttpMethod.POST, request,
@@ -158,12 +197,13 @@ class WallBrainRestApiClient {
         val requestHeaders: HttpHeaders =  getReqeustHeader(configHolder.getUserCredential())
 
         val request = HttpEntity<Any>(
-            JsonConverter.convertObjectToJsonString(params, false), requestHeaders)
+            convertObjectToJsonString(params, false), requestHeaders)
 
         val response: ResponseEntity<RuleSetGroupInfoVo> = restTemplate.exchange(
             configHolder.baseUrl + String.format(ApiSubUrl, apiUrl)+"?withDiscovery=true", HttpMethod.POST, request,
             RuleSetGroupInfoVo::class.java
         )
+
         return response.getBody()!!
 
     }

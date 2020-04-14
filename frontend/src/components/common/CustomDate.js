@@ -4,6 +4,18 @@ import ReactDatetime from 'react-datetime';
 import moment from 'moment';
 
 class CustomDate extends Component {
+    constructor(props) {
+        super(props);
+        this.isValidDate = this.isValidDate.bind(this);
+    }
+
+    isValidDate(current) {
+        // eslint-disable-next-line react/destructuring-assignment
+        const startTime = ReactDatetime.moment(this.props.start);
+        const endTime = ReactDatetime.moment();
+        return current.isAfter(startTime) && current.isBefore(endTime);
+    }
+
     render() {
         const { prevDate, endDate, handlePrevDateChange, handleEndDateChange, yesterday } = this.props;
 
@@ -11,7 +23,7 @@ class CustomDate extends Component {
             <>
                 <Col>
                     <Row>
-                        <Col xs="7" className="datetime-custom-left">
+                        <Col xs="5" className="datetime-custom-left">
                             <FormGroup>
                                 <ReactDatetime
                                     inputProps={{
@@ -26,9 +38,9 @@ class CustomDate extends Component {
                                         await handlePrevDateChange(e);
                                     }}
                                     locale="ko"
-                                    isValidDate={current => {
-                                        return yesterday ? current.isBefore(moment().subtract(1, 'days')) : current.isBefore(moment());
-                                    }}
+                                    // isValidDate={current => {
+                                    //     return yesterday ? current.isBefore(moment().subtract(1, 'days')) : current.isBefore(moment());
+                                    // }}
                                     timeFormat={false}
                                     closeOnSelect
                                 />
@@ -52,9 +64,10 @@ class CustomDate extends Component {
                                         await handleEndDateChange(e);
                                     }}
                                     locale="ko"
-                                    isValidDate={current => {
-                                        return yesterday ? current.isBefore(moment().subtract(1, 'days')) : current.isBefore(moment());
-                                    }}
+                                    // isValidDate={current => { return current.isAfter( moment().subtract(1, 'day') );
+                                    //     // return yesterday ? current.isBefore(moment().subtract(1, 'days')) : current.isBefore(moment());
+                                    // }}
+                                    // isValidDate={this.isValidDate}
                                     timeFormat={false}
                                     closeOnSelect
                                 />

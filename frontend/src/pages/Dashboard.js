@@ -13,11 +13,11 @@ import Loader from '../components/common/Loader';
 class Dashboard extends Component {
     async componentDidMount() {
         const { dashboardStore, onUpdate, history } = this.props;
-        document.title = '아임히어-Work. Web Admin - 대시보드';
+        document.title = 'OASIS. Web Admin - 대시보드';
         onUpdate();
         try {
-            await dashboardStore.teamStatus();
-            await dashboardStore.clientStatus();
+            // await dashboardStore.teamStatus();
+            // await dashboardStore.clientStatus();
         } catch (e) {
             if (e.status === 401) {
                 dashboardStore.root.isLoading = false;

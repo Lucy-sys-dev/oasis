@@ -26,7 +26,7 @@ class AssignTableBody extends Component {
                 {/*</Col>*/}
                 {/*<Col sm={3} className="text-center search-button">*/}
                     <Button
-                        onClick={e => store.handleFireRuleCheck(e)}
+                        // onClick={e => store.handleFireRuleCheck(e)}
                         className="search-button"
                         color="warning"
                         size="md"
