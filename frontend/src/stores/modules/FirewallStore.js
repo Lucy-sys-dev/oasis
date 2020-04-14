@@ -425,7 +425,7 @@ class FirewallStore {
     @action approvalFirewall = async () => {
         this.root.toggleLoading();
         const params = ({
-            rules: this.qdatas, assigns: this.assignees, creator: 8
+            rules: this.qdatas, assigns: this.assignees, creator: jwt.decode(localStorage.getItem('jwtToken')).sub
         });
 
         const { data } = await api.firewall.apporoval(params);

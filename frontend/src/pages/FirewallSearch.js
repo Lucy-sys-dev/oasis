@@ -31,7 +31,7 @@ class FirewallSearch extends Component {
                     <Row>
                         <Col>
                             <h3>
-                                {'방화벽 > 방화벽 관리'}
+                                {'방화벽 > 방화벽 신청 내역 조회'}
                             </h3>
                         </Col>
                     </Row>
@@ -50,7 +50,7 @@ class FirewallSearch extends Component {
                             ) : (
                                 <FirewallSearchBodyCard
                                     store={firewallStore}
-                                    tableHeader={['TITLE', 'KEY', '신청', '상태코드', '결재자', '신청일']}
+                                    tableHeader={['TITLE', 'KEY', '신청', '상태코드', '결재자', '신청일', 'FPMS-ID']}
                                 />
                             )}
                         </Col>

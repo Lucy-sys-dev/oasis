@@ -79,7 +79,7 @@ class TaskService {
     }
 
     fun searchTaskByProject(projectId: Long): List<Task>? {
-        return taskRepository.findByProjectId(projectId = projectId)
+        return taskRepository.findByProjectIdOrderByCreateDateDesc(projectId = projectId)
     }
 
     fun searchTaskByProjectUser(user: User, projectId: Long): List<Task>? {

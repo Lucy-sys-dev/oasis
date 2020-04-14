@@ -13,7 +13,7 @@ import java.util.*
 interface TaskRepository : CrudRepository<Task, Long> {
     fun findFirstByProjectIdOrderByIdDesc(projectId: Long): Task?
     fun findByCreator(creator: User) : List<Task>?
-    fun findByProjectId(projectId: Long): List<Task>?
+    fun findByProjectIdOrderByCreateDateDesc(projectId: Long): List<Task>?
     fun findByProjectIdAndCreatorOrAssignee(projectId: Long, creator: User, assignee: User ) : List<Task>?
 }
 
