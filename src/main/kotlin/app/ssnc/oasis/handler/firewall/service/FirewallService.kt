@@ -209,11 +209,6 @@ class FirewallService(
 
             if (results.hasError()) return null
 
-
-
-
-
-
 //            filter {
 //                val ruleSetInfoVo = RuleSetInfoVo()
 //                ruleSetInfoVo.expireDateTime = toStartDateTime(DateUtil.stringToLocalDate(it.start_date))

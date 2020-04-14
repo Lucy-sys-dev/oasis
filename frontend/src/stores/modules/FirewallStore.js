@@ -129,10 +129,12 @@ class FirewallStore {
 
     @action handlePrevDateChange = e => {
         this.qdata.start_date = moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        this.startDate = moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD');
     };
 
     @action handleEndDateChange = e => {
         this.qdata.end_date = moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        this.endDate = moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD');
     };
 
     @action handlePageChange = value => {

@@ -109,12 +109,17 @@ dependencies {
 
     compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
 
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-joda
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: '2.0.4'
+    //datetime
+    compile group: 'joda-time', name: 'joda-time', version: '2.3'
+
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate4
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: '2.10.3'
+//     https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate4
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: '2.0.4'
+//    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: '2.10.3'
+//    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate5', version: '2.10.3'
+
+
     // https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
     implementation group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
     // https://mvnrepository.com/artifact/com.google.code.gson/gson

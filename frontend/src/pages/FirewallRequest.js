@@ -14,6 +14,13 @@ class FirewallRequest extends Component {
         onUpdate();
     }
 
+    prevPage() {
+        const { history, firewallStore } = this.props;
+        history.push({
+            pathname: '/admin/dashboard',
+        });
+    }
+
     render() {
         const { firewallStore } = this.props;
         return (
@@ -62,7 +69,7 @@ class FirewallRequest extends Component {
                         </div>
                         {/*<div className="divider" />*/}
                         <div className="left-side">
-                            <Button className="btn-link firewall-request" type="button" onClick={firewallStore.toggleDetailInfoModal}>
+                            <Button className="btn-link firewall-request" type="button" onClick={e => this.prevPage()}>
                                 취소
                             </Button>
                         </div>
