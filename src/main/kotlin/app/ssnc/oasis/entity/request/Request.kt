@@ -48,7 +48,7 @@ data class FirewallRequest (
     val rules: MutableSet<SearchRuleRequest>,
     val assigns: List<Assign>?=null,
 //    val receiver: Assign,
-    val creator: Long
+    val creator: String
 )
 
 data class Assign (

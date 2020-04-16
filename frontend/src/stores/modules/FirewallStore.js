@@ -3,6 +3,7 @@ import moment from 'moment';
 // import api from '../../utils/api';
 import jwt from "jsonwebtoken";
 import api from '../../api/config';
+import {isEmpty} from '../../utils/helper';
 
 class FirewallStore {
     @observable clientName = '';
@@ -422,31 +423,39 @@ class FirewallStore {
         }
     };
 
+
+
     @action approvalFirewall = async () => {
         this.root.toggleLoading();
-        const params = ({
-            rules: this.qdatas, assigns: this.assignees, creator: jwt.decode(localStorage.getItem('jwtToken')).sub
-        });
 
-        const { data } = await api.firewall.apporoval(params);
+        if (isEmpty(this.assignees) || isEmpty(this.qdatas)) {
+            this.toggleAlertModal('신청 정보 입력하세요.');
+        } else {
+            const params = ({
+                rules: this.qdatas, assigns: this.assignees, creator: jwt.decode(localStorage.getItem('jwtToken')).sub
+            });
 
-        runInAction(() => {
-            this.root.toggleLoading();
-        });
+            const {data} = await api.firewall.apporoval(params);
 
-        this.infoModal = false;
-        this.placeInfo = null;
-        this.toggleAlertModal('신청 처리 완료되었습니다.');
+            runInAction(() => {
+                this.root.toggleLoading();
+            });
+
+            this.infoModal = false;
+            this.placeInfo = null;
+            this.toggleAlertModal('신청 처리 완료되었습니다.');
+        }
     };
 
     @action confirmApprovalFirewall = async () => {
         this.root.toggleLoading();
+
         const params = ({
             task: this.detailData.data.task.id,
             assignee: this.detailData.data.task.assignee.id, status: "APPROVED"
         });
 
-        const { data } = await api.firewall.confirmApporoval(params);
+        const {data} = await api.firewall.confirmApporoval(params);
 
         runInAction(() => {
             this.root.toggleLoading();

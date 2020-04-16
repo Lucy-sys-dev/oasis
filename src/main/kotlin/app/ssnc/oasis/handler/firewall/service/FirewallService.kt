@@ -97,7 +97,7 @@ class FirewallService(
             val task = Task(
                 projectId = project.id!!, title = "방화벽 신청",
                 key = taskService.generationKey(project.id!!),
-                creator = userService.findById(request.creator).get(),
+                creator = userService.findByEmail(request.creator)!!,
 //                assignee = userService.findByName(request.assigns!!.find { it.order == 0 }!!.user_id)!!,
                 details = request.rules
             )
